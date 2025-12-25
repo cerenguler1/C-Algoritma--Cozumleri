@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace Soru_1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+
+        {
+            // Kullanıcıdan x y ve n değerlerini alıyoruz
+            Console.Write("Ardışık tam sayıların sayısını giriniz (x): ");
+            int x = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Toplamını giriniz (y): ");
+            int y = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Pozisyonunu öğrenmek istediğiniz tam sayıyı giriniz (n): ");
+            int n = Convert.ToInt32(Console.ReadLine());
+
+            // Pozisyondaki tam sayıyı hesaplıyoruz
+            int result = Position(x, y, n);
+
+            // Sonucu ekrana yazdırıyoruz
+            Console.WriteLine($"position({x}, {y}, {n}) == {result}");
+            Console.ReadKey();
+        }
+
+         static int Position(int x, int y, int n)
+        {
+            // Başlangıç değerini (a) hesaplıyoruz
+            int a = (y - (x * (x - 1)) / 2) / x;
+
+            // Pozisyon n'deki tam sayıyı buluyoruz
+            return a + n;  
+        }
+    }
+}
