@@ -3,46 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace ConsoleApp1
+namespace Soru_1
 {
     internal class Program
     {
         static void Main(string[] args)
+
         {
-                Console.Write("Bir cümle giriniz: ");
-                string cümle = Convert.ToString(Console.ReadLine());
+            // Kullanıcıdan x y ve n değerlerini alıyoruz
+            Console.Write("Ardışık tam sayıların sayısını giriniz (x): ");
+            int x = Convert.ToInt32(Console.ReadLine());
 
-                //anahtar kelimelerimizi tanımlıyoruz
-                string[] keywords = { "sand", "water", "fish", "sun" };
+            Console.Write("Toplamını giriniz (y): ");
+            int y = Convert.ToInt32(Console.ReadLine());
 
-                //büyük/küçük harf sorunu için girilen cümleyiküçük harfe çeviriyoruz
-                string küçükharf = cümle.ToLower();
+            Console.Write("Pozisyonunu öğrenmek istediğiniz tam sayıyı giriniz (n): ");
+            int n = Convert.ToInt32(Console.ReadLine());
 
-                //anahtar kelimelerin toplam sayısını tutmak için;
-                int toplam = 0;
+            // Pozisyondaki tam sayıyı hesaplıyoruz
+            int result = Position(x, y, n);
 
+            // Sonucu ekrana yazdırıyoruz
+            Console.WriteLine($"position({x}, {y}, {n}) == {result}");
+            Console.ReadKey();
+        }
 
-                for (int i = 0; i < keywords.Length; i++)
-                {
-                    string keyword = keywords[i];
-                    int count = 0;
+         static int Position(int x, int y, int n)
+        {
+            // Başlangıç değerini (a) hesaplıyoruz
+            int a = (y - (x * (x - 1)) / 2) / x;
 
-
-                    for (int a = 0; a <= küçükharf.Length - keyword.Length; a++)
-                    {
-
-                        if (küçükharf.Substring(a, keyword.Length) == keyword)
-                        {
-                            count++;
-                        }
-                    }
-                    toplam += count;
-                }
-                Console.WriteLine(toplam);
-                Console.ReadKey();
-            }
+            // Pozisyon n'deki tam sayıyı buluyoruz
+            return a + n;  
         }
     }
-
-
+}
